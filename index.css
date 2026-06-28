@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800&family=Space+Grotesk:wght=500;700&family=JetBrains+Mono:wght=400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-panel-bg: #f8fafc;
+  --color-text-base: #1e293b;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-primary: #49496a;
+  --color-secondary: #253359;
+  --color-accent: #c8a951;
+  --color-accent-hover: #b69945;
+  --color-accent-light: #e0c878;
+  --color-panel-bg: var(--color-panel-bg);
+
+  /* Precise custom slate shades used in layouts */
+  --color-slate-55: #f8fafc;
+  --color-slate-150: #f1f5f9;
+  --color-slate-205: #cbd5e1;
+  --color-slate-250: #e2e8f0;
+  --color-slate-450: #94a3b8;
+  --color-slate-550: #64748b;
+  --color-slate-650: #475569;
+  --color-slate-705: #334155;
+  --color-slate-805: #1e293b;
+  --color-slate-850: #111827;
+
+  /* Custom status indicators / accent colors */
+  --color-amber-250: #fde047;
+  --color-amber-650: #d97706;
+  --color-amber-750: #b45309;
+  
+  --color-rose-250: #fca5a5;
+  --color-rose-750: #be123c;
+  --color-rose-955: #4c0519;
+  
+  --color-emerald-150: #a7f3d0;
+  --color-emerald-250: #6ee7b7;
+  --color-emerald-550: #059669;
+  
+  --color-teal-650: #0d9488;
+}
+
+/* === DARK THEME PROFESSIONAL OVERRIDES === */
+.dark {
+  --color-panel-bg: #090d16; /* Deep Cosmic Navy Background */
+  --color-primary: #9aa2db; /* Professional high-contrast light lavender-indigo */
+  --color-secondary: #cbd2ff;
+  --color-text-base: #f8fafc;
+  color: #f8fafc;
+}
+
+/* Scrollbar Customization for Dark Mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #0d1321;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #222d44;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #2d3c5b;
+}
+
+/* Base body background */
+.dark body {
+  background-color: #090d16 !important;
+}
+
+/* Background Overrides - Multi-layer visual hierarchy */
+.dark .bg-white {
+  background-color: #111724 !important; /* Elegant slate card background */
+}
+
+.dark .bg-slate-50,
+.dark .bg-slate-50\/50,
+.dark .bg-slate-55 {
+  background-color: #172132 !important; /* Secondary elements bg */
+}
+
+.dark .bg-slate-100,
+.dark .bg-slate-150 {
+  background-color: #1d293d !important; /* Focus areas */
+}
+
+.dark .bg-slate-200,
+.dark .bg-slate-205,
+.dark .bg-slate-250 {
+  background-color: #24344e !important; /* Badges & neutral buttons */
+}
+
+.dark .bg-slate-850,
+.dark .bg-slate-900 {
+  background-color: #090d16 !important;
+}
+
+/* Border Overrides */
+.dark .border,
+.dark .border-slate-100,
+.dark .border-slate-150,
+.dark .border-slate-200,
+.dark .border-slate-205,
+.dark .border-slate-250,
+.dark .border-slate-300,
+.dark .border-slate-400,
+.dark .border-slate-850,
+.dark .border-slate-200\/60 {
+  border-color: #1e2c45 !important; /* Cybernetic borders */
+}
+
+/* Text Overrides - Slate & Base neutral texts */
+.dark .text-slate-900,
+.dark .text-slate-950,
+.dark .text-slate-800,
+.dark .text-slate-750,
+.dark .text-slate-700,
+.dark .text-slate-705,
+.dark .text-slate-805,
+.dark .text-slate-850 {
+  color: #f8fafc !important; /* Maximum legibility crisp white */
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-slate-550,
+.dark .text-slate-650 {
+  color: #cbd5e1 !important; /* Perfect contrast secondary text */
+}
+
+.dark .text-slate-400,
+.dark .text-slate-350,
+.dark .text-slate-450 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-205 {
+  color: #cbd5e1 !important;
+}
+
+/* Alert, Status, and Action Text Contrast Overrides */
+.dark .text-amber-650,
+.dark .text-amber-700,
+.dark .text-amber-750,
+.dark .text-amber-800,
+.dark .text-amber-900,
+.dark .text-amber-950 {
+  color: #fcd34d !important; /* Highly readable golden text */
+}
+
+.dark .text-emerald-550,
+.dark .text-emerald-600,
+.dark .text-emerald-700,
+.dark .text-emerald-800,
+.dark .text-emerald-900,
+.dark .text-emerald-950 {
+  color: #34d399 !important; /* Vibrant mint green text */
+}
+
+.dark .text-rose-600,
+.dark .text-rose-700,
+.dark .text-rose-750,
+.dark .text-rose-800,
+.dark .text-rose-900,
+.dark .text-rose-950 {
+  color: #f87171 !important; /* Bright accessible crimson red */
+}
+
+.dark .text-indigo-800,
+.dark .text-indigo-900 {
+  color: #a5b4fc !important; /* Accessible soft purple text */
+}
+
+.dark .text-blue-800,
+.dark .text-blue-900 {
+  color: #93c5fd !important; /* Soft sky-blue text */
+}
+
+/* Background Highlight Tints for Badges in Dark Mode */
+.dark .bg-amber-50,
+.dark .bg-amber-100,
+.dark .border-amber-150,
+.dark .border-amber-200,
+.dark .border-amber-250 {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.dark .bg-emerald-50,
+.dark .bg-emerald-100,
+.dark .border-emerald-150,
+.dark .border-emerald-200,
+.dark .border-emerald-250 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark .bg-rose-50,
+.dark .bg-rose-100,
+.dark .border-rose-150,
+.dark .border-rose-200,
+.dark .border-rose-250 {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.dark .bg-indigo-50,
+.dark .bg-indigo-100,
+.dark .border-indigo-150,
+.dark .border-indigo-200 {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.dark .bg-blue-50,
+.dark .bg-blue-100,
+.dark .border-blue-150,
+.dark .border-blue-200 {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Custom dark-mode adjustments for some mixed content */
+.dark .bg-rose-955\/20 {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+}
+
+/* Header style upgrades */
+.dark header {
+  background-image: linear-gradient(to bottom right, #0d1424, #070a13) !important;
+  border-bottom: 1px solid #1e2c45;
+}
+
+/* Input/Form controls override */
+.dark input[type="text"],
+.dark input[type="number"],
+.dark input[type="date"],
+.dark input[type="datetime-local"],
+.dark input[type="search"],
+.dark select,
+.dark textarea {
+  background-color: #151e2e !important;
+  color: #f8fafc !important;
+  border-color: #212e47 !important;
+}
+
+.dark input[type="text"]::placeholder,
+.dark input[type="number"]::placeholder,
+.dark textarea::placeholder {
+  color: #4f617f !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #c8a951 !important;
+  box-shadow: 0 0 0 2px rgba(200, 169, 81, 0.2) !important;
+}
+
+/* Hover-specific items */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-50\/80:hover,
+.dark .hover\:bg-slate-50\/50:hover {
+  background-color: #1b2639 !important;
+}
+.dark .hover\:bg-slate-100:hover {
+  background-color: #1b2639 !important;
+}
+
+/* Dividers & shadows */
+.dark .divide-y > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1e2c45 !important;
+}
+
+.dark .shadow-3xs,
+.dark .shadow-sm,
+.dark .shadow-xs,
+.dark .shadow-md,
+.dark .shadow-lg,
+.dark .shadow-2xl {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* General Opacity Backgrounds & Inputs Overrides to prevent light leaks */
+.dark .bg-white\/80,
+.dark .bg-white\/90,
+.dark .bg-white\/95 {
+  background-color: rgba(17, 23, 36, 0.9) !important;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #151e2e !important;
+  color: #f8fafc !important;
+  border-color: #1e2c45 !important;
+}
+
+.dark select option {
+  background-color: #111724 !important;
+  color: #f8fafc !important;
+}
+
+/* SVG Chart Overrides in Dark Mode */
+.dark svg line {
+  stroke: #1e2c45 !important;
+}
+.dark svg text {
+  fill: #94a3b8 !important;
+}
+
+/* === PROTECT PRINTS AND EXPORTS FROM BEING DARK === */
+/* Receipts are real-life thermal receipts and should always render ink-friendly */
+.dark [id^="receipt-"],
+.dark [id^="receipt-"] *,
+.dark .receipt-preview-box,
+.dark .receipt-preview-box *,
+.dark [style*="font-family:'Courier New'"],
+.dark [style*="font-family:'Courier New'"] *,
+.dark .print\:bg-white,
+.dark .print\:bg-white * {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border-color: #cbd5e1 !important;
+}

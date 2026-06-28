@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir TS SANGKAR - Standalone Mode</title>
+
+    <!-- Font Awesome 6 (Free CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- html2canvas untuk konversi nota ke JPG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Standalone Style Sheet Links -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="icon">
+                <img src="ts.png" alt="Logo TS SANGKAR" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1626331307374-ba220ae10793?auto=format&fit=crop&q=80&w=300';">
+            </div>            
+            <span>TS SANGKAR</span>
+        </div>
+        <div class="info-bar">
+            <span><i class="far fa-clock"></i> <span id="clock">--:--:--</span></span>
+            <span><i class="far fa-calendar-alt"></i> <span id="dateDisplay">---</span></span>
+            <span><i class="fas fa-shopping-cart"></i> <b id="cartBadge">0</b> item</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- PRODUK -->
+        <div class="products-panel">
+            <div class="products-header">
+                <h3><i class="fas fa-box-open"></i> Katalog Produk</h3>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Cari produk...">
+                </div>
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="category-tab active" data-cat="all"><i class="fas fa-th-large"></i> Semua</button>
+                    <button class="category-tab" data-cat="Kosan"><i class="fas fa-home"></i> Kosan</button>
+                    <button class="category-tab" data-cat="Kosan Ceper"><i class="fas fa-border-all"></i> Kosan Ceper</button>
+                    <button class="category-tab" data-cat="Replika"><i class="fas fa-clone"></i> Replika</button>
+                    <button class="category-tab" data-cat="Aksesoris"><i class="fas fa-clone"></i> Aksesoris</button>
+                </div>
+            </div>
+            <div class="products-grid-wrap">
+                <div id="loadingIndicator" style="text-align:center;padding:20px;display:none;">
+                    <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--accent);"></i>
+                    <p>Memuat produk...</p>
+                </div>
+                <div class="grid" id="productList"></div>
+            </div>
+        </div>
+
+        <!-- KERANJANG -->
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-basket"></i> Keranjang <span class="cart-count" id="cartCount">0</span></h3>
+                <div class="cart-actions">
+                    <button onclick="clearCart()" title="Kosongkan keranjang"><i class="fas fa-trash-alt"></i> Kosongkan</button>
+                </div>
+            </div>
+            <div class="cart-list-wrap" id="cartList">
+                <div class="cart-empty">
+                    <div class="icon"><i class="fas fa-cart-plus"></i></div>
+                    <p>Keranjang masih kosong</p>
+                    <small>Klik produk untuk menambahkan</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANSAKSI -->
+        <div class="summary-panel" id="summaryPanel">
+            <h3><i class="fas fa-cash-register"></i> Transaksi</h3>
+
+            <label><i class="fas fa-user"></i> Nama Pelanggan</label>
+            <input type="text" id="nama" placeholder="Nama pelanggan...">
+
+            <label><i class="fas fa-map-marker-alt"></i> Alamat</label>
+            <textarea id="alamat" rows="2" placeholder="Alamat pengiriman..."></textarea>
+
+            <label><i class="fas fa-phone"></i> Kontak</label>
+            <input type="text" id="kontak" placeholder="No. HP atau WA">
+
+            <!-- FITUR ESTIMASI PREORDER -->
+            <label><i class="fas fa-calendar-check"></i> Estimasi Pre-order</label>
+            <input type="date" id="estimasi">
+
+            <div class="summary-row">
+                <div>
+                    <label><i class="fas fa-shipping-fast"></i> Ongkir</label>
+                    <input type="number" id="ongkir" value="0" min="0" placeholder="0">
+                </div>
+                <div>
+                    <label><i class="fas fa-plus-circle"></i> Biaya Tambahan</label>
+                    <input type="number" id="tambahan" value="0" min="0" placeholder="0">
+                </div>
+            </div>
+
+            <label><i class="fas fa-tags"></i> Diskon (%)</label>
+            <input type="number" id="diskon" value="0" min="0" max="100" placeholder="0%">
+
+            <div class="divider"></div>
+
+            <div class="total-display">
+                <div class="label">Total Pembayaran</div>
+                <div class="amount" id="totalDisplay">Rp 0</div>
+            </div>
+
+            <label><i class="fas fa-money-bill-wave"></i> Uang Diterima</label>
+            <input type="number" id="uangDiterima" value="0" min="0" placeholder="Jumlah uang diterima...">
+
+            <!-- DP Field (muncul jika metode DP dipilih) -->
+            <div class="dp-field" id="dpField">
+                <label><i class="fas fa-hand-holding-usd"></i> Jumlah DP Diterima</label>
+                <input type="number" id="dpDiterima" value="0" min="0" placeholder="Jumlah DP...">
+            </div>
+
+            <div class="change-display" id="changeDisplay">
+                <i class="fas fa-coins"></i> Kembalian: <b id="changeAmount">Rp 0</b>
+            </div>
+
+            <label><i class="fas fa-credit-card"></i> Metode Pembayaran</label>
+            <select id="metodeBayar">
+                <option value="Tunai">💵 Tunai</option>
+                <option value="Transfer">📱 Transfer</option>
+                <option value="QRIS">📲 QRIS</option>
+                <option value="Kartu Debit">💳 Kartu Debit</option>
+                <option value="Kartu Kredit">💎 Kartu Kredit</option>
+                <option value="DP">🏷️ DP (Uang Muka)</option>
+                <option value="Belum Dibayar">⏳ Belum Dibayar</option>
+            </select>
+
+            <button class="btn-primary" onclick="checkout()"><i class="fas fa-shopping-cart"></i> CHECKOUT</button>
+
+            <!-- Tombol Download & Share Nota -->
+            <div class="btn-row">
+                <button class="btn-download" onclick="downloadNotaJPG()" title="Unduh nota sebagai gambar JPG">
+                    <i class="fas fa-download"></i> Download JPG
+                </button>
+                <button class="btn-share" onclick="shareNota()" title="Bagikan nota via WhatsApp">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+
+            <button class="btn-secondary" onclick="resetAll()"><i class="fas fa-redo-alt"></i> Reset Transaksi</button>
+        </div>
+    </div>
+
+    <!-- Container off-screen untuk capture html2canvas -->
+    <div id="receiptCaptureContainer"></div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Standalone Script Links -->
+    <script src="app.js"></script>
+</body>
+</html>

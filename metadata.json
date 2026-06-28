@@ -1,0 +1,6 @@
+{
+  "name": "Rizquna",
+  "description": "Aplikasi Kasir profesional dan manajemen Toko Sangkar Burung Rizquna, dikembangkan dengan integrasi real-time Google Sheets.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

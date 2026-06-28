@@ -1,0 +1,23 @@
+{
+  "name": "Rizquna Kasir Pintar",
+  "short_name": "Rizquna",
+  "description": "Aplikasi Kasir Profesional dan Manajemen Toko Sangkar Burung Rizquna terintegrasi Google Sheets.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090d16",
+  "theme_color": "#253359",
+  "icons": [
+    {
+      "src": "/logo_rizquna.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo_rizquna.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
